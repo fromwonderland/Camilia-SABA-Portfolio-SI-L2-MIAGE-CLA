@@ -3,30 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio Camilia SABA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="portfolio">
-        <div class="page-title">Camilia SABA L3 MIAGE - Portfolio - Introduction aux systèmes d'information</div>
-        <div class="top-panel">
-            <div class="panel-section gauche">
-                <h2 class="panel-title">Chapitre</h2>
-                <select id="chapitre-select" class="dropdown">
-                    <option value="">Sélectionnez un chapitre</option>
-                    <option value="1">1. Introduction au cours</option>
-                    <option value="2">2. Odoo</option>
-                </select>
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">Camilia SABA 43003141 L3 MIAGE CLA - Portfolio</div>
+            
+            <div class="nav-center">
+                <div class="dropdown">
+                    <button class="dropbtn">Chapitres</button>
+                    <div class="dropdown-content">
+                        <!-- Les options seront ajoutées dynamiquement -->
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Fichiers</button>
+                    <div class="dropdown-content" id="files-dropdown">
+                        <!-- Les options seront ajoutées dynamiquement -->
+                    </div>
+                </div>
+                <button id="home-btn" class="home-btn">ACCUEIL</button>
             </div>
-            <div class="panel-section droite">
-                <h2 class="panel-title">Fichier</h2>
-                <select id="fichier-select" class="dropdown">
-                    <option value="">Sélectionnez un fichier</option>
-                    <option value="intro">Introduction.pdf</option>
-                    <option value="odoo">Odoo TP.xlsx</option>
-                </select>
+            
+            <div class="nav-right">
+                <button id="fullscreen-btn" class="fullscreen-button" title="Mode plein écran">
+                    <span class="fullscreen-text">Plein écran</span>
+                    <svg class="fullscreen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Vue d'accueil -->
+    <div id="home-view" class="home-view">
+        <div class="chapters-container" id="chapters-container">
+            <!-- Le contenu sera généré dynamiquement par JavaScript -->
+        </div>
+    </div>
+
+    <main id="main-content">
+        <div class="file-navigation">
+            <button id="prev-file" class="nav-arrow">⬅️</button>
+            <div id="file-content" class="file-display">
+                <div class="welcome-message">
+                    <h1>Bienvenue sur mon portfolio</h1>
+                </div>
+            </div>
+            <button id="next-file" class="nav-arrow">➡️</button>
+        </div>
+    </main>
+
+    <button id="guide-btn" class="guide-button">Guide</button>
+    <div id="guide-modal" class="guide-modal">
+        <div class="guide-content">
+            <span class="close-guide">&times;</span>
+            <h2>📚 Guide d'utilisation</h2>
+            <div class="guide-text">
+                <p>🖱️ Vous pouvez directement sélectionner le fichier de votre souhait depuis l'accueil</p>
+                <p>🏠 Si un fichier est déjà ouvert, vous pouvez revenir à l'accueil en cliquant sur le bouton ACCUEIL en haut de la page</p>
+                <p>📂 Vous pouvez également utiliser les menus déroulants pour sélectionner d'abord le chapitre, puis le fichier de votre choix</p>
+                <p>🔍 Utilisez les flèches de navigation ⬅️ et ➡️ pour passer facilement d'un fichier à l'autre dans le même chapitre</p>
+                <p>🖥️ Le bouton Plein écran vous permet d'afficher le contenu en mode plein écran pour une meilleure lisibilité</p>
+            </div>
+            <div id="guide-text">
+                <!-- Le contenu du guide sera chargé ici -->
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
