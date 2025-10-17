@@ -11,7 +11,7 @@ const fileContent = document.getElementById('file-content');
 
 // Données des chapitres et fichiers
 const appData = {
-    'Notes de cours': ['NotesCours.pdf'],
+    'Notes de cours': ['Notes_de_Cours_Personnelles.pdf'],
     'Dossier 1: INTRODUCTION AUX SYSTEMES D INFORMATION': ['DOSSIER1_td_PGI_exercice.pdf'],
     'Dossier 2: ACTEURS ET FLUX': ['DOSSIER2_TP_Odoo.pdf'],
     'Dossier 3: LIVRABLES': ['DOSSIER3 Training schéma réponse.pdf', 'DOSSIER3_ProcessusGestion_Activites_Acteurs.pdf', 'DOSSIER3_Les livrables_1.pdf','DOSSIER3_Les livrables_2.pdf'],
