@@ -11,15 +11,15 @@ const fileContent = document.getElementById('file-content');
 
 // Données des chapitres et fichiers
 const appData = {
-    'Notes de cours': ['SI_Notes_de_Cours_Personnelles.pdf'],
-    'Dossier 1: INTRODUCTION AUX SYSTEMES D INFORMATION': ['DOSSIER1_td_PGI_exercice.pdf'],
-    'Dossier 2: ACTEURS ET FLUX': ['DOSSIER2_TP_Odoo.pdf'],
-    'Dossier 3: LIVRABLES': ['DOSSIER3 Training schéma réponse.pdf', 'DOSSIER3_ProcessusGestion_Activites_Acteurs.pdf', 'DOSSIER3_Les livrables_1.pdf','DOSSIER3_Les livrables_2.pdf'],
-    'Dossier 4: DIAGRAMME DE GANTT': ['DOSSIER4_Diagramme_Gantt.pdf'],
-    'Certifications': ['Camilia_SABA_Certification_PIX.pdf'],
-    'Projet final': [],
-    'Soutenance (diaporama)': [],
-    'Autres documents': []
+    '📂Notes de cours': ['SI_Notes_de_Cours_Personnelles.pdf'],
+    '📂Dossier 1: INTRODUCTION AUX SYSTEMES D INFORMATION': ['DOSSIER1_td_PGI_exercice.pdf'],
+    '📂Dossier 2: ACTEURS ET FLUX': ['DOSSIER2_TP_Odoo.pdf'],
+    '📂Dossier 3: LIVRABLES': ['DOSSIER3 Training schéma réponse.pdf', 'DOSSIER3_ProcessusGestion_Activites_Acteurs.pdf', 'DOSSIER3_Les livrables_1.pdf','DOSSIER3_Les livrables_2.pdf'],
+    '📂Dossier 4: DIAGRAMME DE GANTT': ['DOSSIER4_Diagramme_Gantt.pdf'],
+    '📂Certifications': ['Camilia_SABA_Certification_PIX.pdf'],
+    '📂Projet final': ['Projet_final.pdf'],
+    '📂Soutenance (diaporama)': ['Soutenance_diaporama_projet_final.pdf'],
+    '📂Autres documents': ['Autres_documents.pdf']
 };
 
 // Gestion du mode plein écran
@@ -131,7 +131,7 @@ function showHomeView() {
                                  .replace(/\b\w/g, l => l.toUpperCase());
             
             fileItem.innerHTML = `
-                <span class="file-icon">📄</span>
+                <span class="file-icon">📜</span>
                 <span class="file-name">${chapterNumber}.${index + 1} - ${displayName}</span>
             `;
             
