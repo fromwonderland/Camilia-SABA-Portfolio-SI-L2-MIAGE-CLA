@@ -96,11 +96,16 @@ function setupGuideModal() {
 function showHomeView() {
     const homeView = document.getElementById('home-view');
     const mainContent = document.getElementById('main-content');
-    const homeBtn = document.getElementById('home-btn');
+    const mobileHomeBtn = document.getElementById('home-btn');
+    const desktopHomeBtn = document.getElementById('home-btn-desktop');
     
     homeView.classList.add('active');
     mainContent.classList.add('hidden');
-    homeBtn.classList.add('active');
+    
+    // Mettre à jour les deux boutons d'accueil
+    if (mobileHomeBtn) mobileHomeBtn.classList.add('active');
+    if (desktopHomeBtn) desktopHomeBtn.classList.add('active');
+    
     isHomeViewActive = true;
     
     // Remplir la vue d'accueil avec les chapitres et fichiers
