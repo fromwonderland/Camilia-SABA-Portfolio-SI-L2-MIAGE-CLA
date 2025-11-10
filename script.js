@@ -20,7 +20,7 @@ const appData = {
     '📂Dossier 6: GESTION D UN PROJET SI': ['Dossier6 Cours Gestion de projets SI.pdf', 'Dossier6_SFG_TalentSeek.pdf'],
     '📂Certifications': ['Camilia_SABA_Certification_PIX.pdf'],
     '📂Projet final': ['Projet_final.pdf'],
-    '📂Soutenance (diaporama)': ['Soutenance_Diaporama_AURA_SI.oxdx'],
+    '📂Soutenance (diaporama)': ['Soutenance_Diaporama_AURA_SI.pptx'],
     '📂Autres documents': ['Autres_documents.pdf']
 };
 
