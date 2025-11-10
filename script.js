@@ -16,11 +16,11 @@ const appData = {
     '📂Dossier 2: ACTEURS ET FLUX': ['DOSSIER2_TP_Odoo.pdf'],
     '📂Dossier 3: LIVRABLES': ['DOSSIER3 Training schéma réponse.pdf', 'DOSSIER3_ProcessusGestion_Activites_Acteurs.pdf', 'DOSSIER3_Les livrables_1.pdf','DOSSIER3_Les livrables_2.pdf'],
     '📂Dossier 4: DIAGRAMME DE GANTT': ['DOSSIER4_Diagramme_Gantt.pdf'],
-    '📂Dossier 5: DIAGRAMME DE GANTT': [],
+    '📂Dossier 5: USE CASE': [],
     '📂Dossier 6: GESTION D UN PROJET SI': ['Dossier6 Cours Gestion de projets SI.pdf', 'Dossier6_SFG_TalentSeek.pdf'],
     '📂Certifications': ['Camilia_SABA_Certification_PIX.pdf'],
     '📂Projet final': ['Projet_final.pdf'],
-    '📂Soutenance (diaporama)': ['Soutenance_diaporama_projet_final.pdf'],
+    '📂Soutenance (diaporama)': ['Soutenance_Diaporama_AURA_SI.oxdx'],
     '📂Autres documents': ['Autres_documents.pdf']
 };
 
@@ -345,18 +345,68 @@ function openFile(index) {
     }
 }
 
-// Navigation entre les fichiers
+// Navigation entre les fichiers et les chapitres
 function navigateToPreviousFile() {
-    if (files.length > 0) {
-        const newIndex = (currentFileIndex - 1 + files.length) % files.length;
-        openFile(newIndex);
+    if (files.length === 0) return;
+    
+    // Si on est au premier fichier du chapitre actuel
+    if (currentFileIndex <= 0) {
+        // Récupérer tous les noms de chapitres
+        const chapterNames = Object.keys(appData);
+        const currentChapterIndex = chapterNames.indexOf(currentChapter);
+        
+        // Aller au dernier fichier du chapitre précédent
+        if (currentChapterIndex > 0) {
+            const prevChapter = chapterNames[currentChapterIndex - 1];
+            const prevChapterFiles = appData[prevChapter];
+            
+            if (prevChapterFiles && prevChapterFiles.length > 0) {
+                loadChapter(prevChapter);
+                openFile(prevChapterFiles.length - 1); // Dernier fichier du chapitre précédent
+            } else {
+                // Si le chapitre précédent n'a pas de fichiers, on essaie avec le chapitre d'avant
+                currentChapter = prevChapter;
+                navigateToPreviousFile();
+            }
+        } else {
+            // Si on est au premier chapitre, on reste sur le premier fichier
+            openFile(0);
+        }
+    } else {
+        // Aller au fichier précédent dans le chapitre actuel
+        openFile(currentFileIndex - 1);
     }
 }
 
 function navigateToNextFile() {
-    if (files.length > 0) {
-        const newIndex = (currentFileIndex + 1) % files.length;
-        openFile(newIndex);
+    if (files.length === 0) return;
+    
+    // Si on est au dernier fichier du chapitre actuel
+    if (currentFileIndex >= files.length - 1) {
+        // Récupérer tous les noms de chapitres
+        const chapterNames = Object.keys(appData);
+        const currentChapterIndex = chapterNames.indexOf(currentChapter);
+        
+        // Aller au premier fichier du chapitre suivant
+        if (currentChapterIndex < chapterNames.length - 1) {
+            const nextChapter = chapterNames[currentChapterIndex + 1];
+            const nextChapterFiles = appData[nextChapter];
+            
+            if (nextChapterFiles && nextChapterFiles.length > 0) {
+                loadChapter(nextChapter);
+                openFile(0); // Premier fichier du chapitre suivant
+            } else {
+                // Si le chapitre suivant n'a pas de fichiers, on essaie avec le prochain
+                currentChapter = nextChapter;
+                navigateToNextFile();
+            }
+        } else {
+            // Si on est au dernier chapitre, on reste sur le dernier fichier
+            openFile(files.length - 1);
+        }
+    } else {
+        // Aller au fichier suivant dans le chapitre actuel
+        openFile(currentFileIndex + 1);
     }
 }
 
@@ -370,9 +420,47 @@ function showNoFilesMessage() {
     `;
 }
 
+// Gestion du clic sur le bouton Accueil (mobile et desktop)
+function setupHomeButtons() {
+    const homeButtons = document.querySelectorAll('.home-btn');
+    homeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            showHomeView();
+        });
+    });
+}
+
+// Désactiver le clic sur le logo et le texte
+function setupLogoClickHandler() {
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        
+        // Désactiver également le clic sur l'image et le texte individuellement
+        const logoImg = document.querySelector('.logo-img');
+        const logoSpan = document.querySelector('.logo span');
+        
+        [logoImg, logoSpan].forEach(element => {
+            if (element) {
+                element.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            }
+        });
+    }
+}
+
 // Initialiser l'application quand le DOM est chargé
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
+    setupHomeButtons();
+    setupFullscreen();
+    setupGuideModal();
+    setupLogoClickHandler();
     
     // Ajouter un écouteur d'événement pour le clic sur les fichiers dans la vue d'accueil
     document.addEventListener('click', (e) => {
