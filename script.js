@@ -19,7 +19,7 @@ const appData = {
     '📂Dossier 5: USE CASE': [],
     '📂Dossier 6: GESTION D\'UN PROJET SI': ['Dossier6 Cours Gestion de projets SI.pdf', 'Dossier6_SFG_TalentSeek.pdf'],
     '📂Certifications': ['Camilia_SABA_Certification_PIX.pdf', 'Sololearn Certification Introduction to Java.pdf', 'Sololearn Certification Introduction au C.pdf', 'Sololearn Certification Intermédiaire SQL.pdf'],
-    '📂Projet final': ['AURA.zip'],
+    '📂Projet final': ['AURA.zip', 'AURA Diagramme UML.png', 'Maquette AURA logo.jpg','Maquette Accueil.png', 'Maquette Connexion.png', 'Maquette Création compte.png', 'Maquette Contacts.png','Maquette Color palette.png'],
     '📂Soutenance (diaporama)': ['Soutenance_Diaporama_AURA_SI.pptx'],
 };
 
@@ -253,95 +253,149 @@ function openFile(index) {
     if (index >= 0 && index < files.length) {
         currentFileIndex = index;
         const fileName = files[index];
+        const fileExt = fileName.split('.').pop().toLowerCase();
         
-        // Vérifier si c'est un fichier PDF
-        if (fileName.toLowerCase().endsWith('.pdf')) {
-            // Afficher le PDF dans un iframe
-            // Trouver le numéro du chapitre et formater le nom
-            let chapterNumber = 0;
-            let fileNumber = index + 1;
-            let chapterDisplayName = currentChapter;
-            
-            // Parcourir les chapitres pour trouver le numéro du chapitre actuel
-            for (const [chapter, chapterFiles] of Object.entries(appData)) {
-                if (chapterFiles.length > 0) {
-                    chapterNumber++;
-                    if (chapter === currentChapter) {
-                        chapterDisplayName = chapter.replace(/_/g, ' ')
-                                                .replace(/\b\w/g, l => l.toUpperCase());
-                        break;
-                    }
+        // Trouver le numéro du chapitre et formater le nom
+        let chapterNumber = 0;
+        let fileNumber = index + 1;
+        let chapterDisplayName = currentChapter;
+        
+        // Parcourir les chapitres pour trouver le numéro du chapitre actuel
+        for (const [chapter, chapterFiles] of Object.entries(appData)) {
+            if (chapterFiles.length > 0) {
+                chapterNumber++;
+                if (chapter === currentChapter) {
+                    chapterDisplayName = chapter.replace(/_/g, ' ')
+                                            .replace(/\b\w/g, l => l.toUpperCase());
+                    break;
                 }
             }
-            
-            // Créer le nom de fichier affiché
-            const displayName = fileName.replace(/\.(pdf|docx?|xlsx?|pptx?)$/i, '')
-                                     .replace(/_/g, ' ')
-                                     .replace(/\b\w/g, l => l.toUpperCase());
-            
-            fileContent.innerHTML = `
-                <div class="file-container">
-                    <div class="file-header">
-                        <div class="file-path">
-                            <span class="chapter-path">${chapterNumber}. ${chapterDisplayName}</span>
-                            <span class="path-separator"> → </span>
-                            <span class="file-path-name">${chapterNumber}.${fileNumber} ${displayName}</span>
-                        </div>
+        }
+        
+        // Créer le nom de fichier affiché
+        const displayName = fileName.replace(/\.(pdf|docx?|xlsx?|pptx?|png|jpg|jpeg|gif|txt|zip|rar|7z|svg|webp)$/i, '')
+                                 .replace(/_/g, ' ')
+                                 .replace(/\b\w/g, l => l.toUpperCase());
+        
+        // Créer l'en-tête commun à tous les fichiers
+        const fileHeader = `
+            <div class="file-container">
+                <div class="file-header">
+                    <div class="file-path">
+                        <span class="chapter-path">${chapterNumber}. ${chapterDisplayName}</span>
+                        <span class="path-separator"> → </span>
+                        <span class="file-path-name">${chapterNumber}.${fileNumber} ${displayName}</span>
                     </div>
-                    <div class="file-preview">
-                        <iframe 
-                            src="${fileName}" 
-                            width="100%" 
-                            height="600px"
-                            style="border: 1px solid #444; border-radius: 4px;"
-                        >
-                            Votre navigateur ne supporte pas les PDF. 
-                            <a href="${fileName}">Télécharger le fichier</a>
-                        </iframe>
-                        <p class="file-info">
-                            <span>Fichier ${fileNumber} sur ${files.length}</span>
-                        </p>
+                    <div class="file-actions">
+                        <a href="${fileName}" class="download-btn" download>
+                            <span class="download-icon">⬇️</span> Télécharger
+                        </a>
                     </div>
                 </div>
-            `;
-        } else {
-            // Pour les autres types de fichiers (exemple)
-            // Même logique de numérotation pour les fichiers non-PDF
-            let chapterNumber = 0;
-            let fileNumber = index + 1;
-            let chapterDisplayName = currentChapter;
+                <div class="file-preview">`;
+        
+        const fileFooter = `
+                    <p class="file-info">
+                        <span>Fichier ${fileNumber} sur ${files.length}</span>
+                    </p>
+                </div>
+            </div>`;
+        
+        let fileContentHTML = '';
+        
+        // Gestion des différents types de fichiers
+        if (fileExt === 'pdf') {
+            // Afficher le PDF dans un iframe
+            fileContentHTML = fileHeader + `
+                <iframe 
+                    src="${fileName}" 
+                    width="100%" 
+                    height="600px"
+                    style="border: 1px solid #444; border-radius: 4px;"
+                >
+                    Votre navigateur ne supporte pas les PDF. 
+                    <a href="${fileName}">Télécharger le fichier</a>
+                </iframe>` + fileFooter;
+                
+        } else if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(fileExt)) {
+            // Afficher les images
+            fileContentHTML = fileHeader + `
+                <div class="image-container" style="text-align: center; margin: 20px 0;">
+                    <img src="${fileName}" alt="${displayName}" style="max-width: 100%; max-height: 80vh; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+                </div>` + fileFooter;
+                
+        } else if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(fileExt)) {
+            // Afficher un aperçu des documents Office avec un lien de téléchargement
+            const fileType = fileExt.startsWith('doc') ? 'Word' : 
+                            fileExt.startsWith('xls') ? 'Excel' : 'PowerPoint';
             
-            for (const [chapter, chapterFiles] of Object.entries(appData)) {
-                if (chapterFiles.length > 0) {
-                    chapterNumber++;
-                    if (chapter === currentChapter) {
-                        chapterDisplayName = chapter.replace(/_/g, ' ')
-                                                .replace(/\b\w/g, l => l.toUpperCase());
-                        break;
+            fileContentHTML = fileHeader + `
+                <div class="office-preview" style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 72px; margin-bottom: 20px;">
+                        ${fileType === 'Word' ? '📄' : fileType === 'Excel' ? '📊' : '📑'}
+                    </div>
+                    <h3>Fichier ${fileType}</h3>
+                    <p>Ce navigateur ne peut pas afficher un aperçu de ce fichier ${fileType}.</p>
+                    <p>Veuillez le télécharger pour le visualiser.</p>
+                    <a href="${fileName}" class="download-btn" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #4a6fa5; color: white; text-decoration: none; border-radius: 4px;">
+                        Télécharger le fichier ${fileType}
+                    </a>
+                </div>` + fileFooter;
+                
+        } else if (fileExt === 'txt') {
+            // Afficher le contenu des fichiers texte
+            fileContentHTML = fileHeader + `
+                <div class="text-file-container" style="background: #1e1e1e; padding: 20px; border-radius: 4px; font-family: 'Courier New', monospace; white-space: pre-wrap; overflow-x: auto;">
+                    Chargement du contenu du fichier...
+                </div>` + fileFooter;
+            
+            // Charger le contenu du fichier texte via AJAX
+            fetch(fileName)
+                .then(response => response.text())
+                .then(text => {
+                    const container = fileContent.querySelector('.text-file-container');
+                    if (container) {
+                        container.textContent = text;
                     }
-                }
-            }
-            
-            const displayName = fileName.replace(/\.(pdf|docx?|xlsx?|pptx?)$/i, '')
-                                     .replace(/_/g, ' ')
-                                     .replace(/\b\w/g, l => l.toUpperCase());
-            
-            fileContent.innerHTML = `
-                <div class="file-container">
-                    <div class="file-header">
-                        <div class="file-path">
-                            <span class="chapter-path">${chapterNumber}. ${chapterDisplayName}</span>
-                            <span class="path-separator"> → </span>
-                            <span class="file-path-name">${chapterNumber}.${fileNumber} ${displayName}</span>
-                        </div>
-                    </div>
-                    <div class="file-preview">
-                        <p>Contenu du fichier : ${displayName}</p>
-                        <p>Fichier ${fileNumber} sur ${files.length}</p>
-                    </div>
-                </div>`;
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement du fichier texte:', error);
+                    const container = fileContent.querySelector('.text-file-container');
+                    if (container) {
+                        container.innerHTML = 'Impossible de charger le contenu du fichier. <a href="' + fileName + '" download>Télécharger le fichier</a>';
+                    }
+                });
+                
+        } else if (['zip', 'rar', '7z'].includes(fileExt)) {
+            // Afficher un message pour les fichiers compressés
+            fileContentHTML = fileHeader + `
+                <div class="archive-preview" style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 72px; margin-bottom: 20px;">🗜️</div>
+                    <h3>Fichier d'archive (${fileExt.toUpperCase()})</h3>
+                    <p>Ce fichier est une archive compressée.</p>
+                    <p>Veuillez le télécharger et l'extraire pour accéder à son contenu.</p>
+                    <a href="${fileName}" class="download-btn" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #4a6fa5; color: white; text-decoration: none; border-radius: 4px;">
+                        Télécharger l'archive (${fileExt.toUpperCase()})
+                    </a>
+                </div>` + fileFooter;
+                
+        } else {
+            // Pour les autres types de fichiers non pris en charge
+            fileContentHTML = fileHeader + `
+                <div class="unsupported-file" style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 72px; margin-bottom: 20px;">❓</div>
+                    <h3>Type de fichier non pris en charge</h3>
+                    <p>Ce type de fichier (${fileExt}) ne peut pas être affiché directement dans le navigateur.</p>
+                    <a href="${fileName}" class="download-btn" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #4a6fa5; color: white; text-decoration: none; border-radius: 4px;">
+                        Télécharger le fichier
+                    </a>
+                </div>` + fileFooter;
         }
+        
+        // Mettre à jour le contenu
+        fileContent.innerHTML = fileContentHTML;
     }
+    
 }
 
 // Navigation entre les fichiers et les chapitres
