@@ -302,6 +302,45 @@ body {
     box-shadow: 0 0 15px rgba(66, 165, 245, 0.5);
 }
 
+/* Style du bouton de téléchargement */
+.download-btn {
+    background-color: #0d47a1;
+    color: #e3f2fd;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #42a5f5;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.download-btn:hover {
+    background-color: #1565c0;
+    border-color: #42a5f5;
+    box-shadow: 0 0 10px rgba(66, 165, 245, 0.3);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Positionnement du bouton de téléchargement */
+.file-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.file-actions {
+    margin-left: 1rem;
+}
+
 /* Vue d'accueil */
 .home-view {
     display: none;
