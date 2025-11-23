@@ -19,7 +19,7 @@ const appData = {
     '📂Dossier 5: USE CASE': [],
     '📂Dossier 6: GESTION D\'UN PROJET SI': ['Dossier6 Cours Gestion de projets SI.pdf', 'Dossier6_SFG_TalentSeek.pdf'],
     '📂Certifications': ['Camilia_SABA_Certification_PIX.pdf', 'Sololearn Certification Introduction to Java.pdf', 'Sololearn Certification Introduction au C.pdf', 'Sololearn Certification Intermédiaire SQL.pdf'],
-    '📂Projet final': ['AURA.zip', 'AURA Diagramme UML.png', 'Maquette AURA logo.jpg','Maquette Accueil.png', 'Maquette Connexion.png', 'Maquette Création compte.png', 'Maquette Contacts.png','Maquette Color palette.png'],
+    '📂Projet final': ['AURA.zip','AURA PROJET SI Document partagé.pdf', 'AURA Diagramme UML.png', 'Maquette AURA logo.jpg','Maquette Accueil.png', 'Maquette Connexion.png', 'Maquette Création compte.png', 'Maquette Contacts.png','Maquette Color palette.png'],
     '📂Soutenance (diaporama)': ['SI PROJET FINAL AURA DIAPORAMA.pdf'],
 };
 
