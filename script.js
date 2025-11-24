@@ -12,7 +12,7 @@ const fileContent = document.getElementById('file-content');
 // Données des chapitres et fichiers
 const appData = {
     '📂Notes de cours': ['SI_Notes_de_Cours_Personnelles.pdf'],
-    '📂Dossier 1: INTRODUCTION AUX SYSTEMES D INFORMATION': ['DOSSIER1_td_PGI_exercice.pdf','DOSSIER1_TD_1.pdf', 'DOSSIER1_PGI_exercice.xls'],
+    '📂Dossier 1: INTRODUCTION AUX SYSTEMES D INFORMATION': ['DOSSIER1_td_PGI_exercice.pdf','DOSSIER1_TD_1.pdf', 'DOSSIER1_PGI_exercice.pdf','DOSSIER1_PGI_exercice.xls'],
     '📂Dossier 2: ACTEURS ET FLUX': ['DOSSIER2_TP_Odoo.pdf'],
     '📂Dossier 3: LIVRABLES': ['DOSSIER3 Training_Schema_Reponse.pdf', 'DOSSIER3_ProcessusGestion_Activites_Acteurs.pdf', 'DOSSIER3_Les livrables_1.pdf','DOSSIER3_Les livrables_2.pdf'],
     '📂Dossier 4: DIAGRAMME DE GANTT': ['DOSSIER4_COURS_Notions_générales_SI.pdf','DOSSIER4_Diagramme_Gantt.pdf','DOSSIER4_TD_MCD_Méthode_MERISe.pdf', 'DOSSIER4_TD_MCD_Exercice1.jpg'],
