@@ -16,10 +16,10 @@ const appData = {
     '📂Dossier 2: ACTEURS ET FLUX': ['DOSSIER2_TP_Odoo.pdf'],
     '📂Dossier 3: LIVRABLES': ['DOSSIER3 Training schéma réponse.pdf', 'DOSSIER3_ProcessusGestion_Activites_Acteurs.pdf', 'DOSSIER3_Les livrables_1.pdf','DOSSIER3_Les livrables_2.pdf'],
     '📂Dossier 4: DIAGRAMME DE GANTT': ['DOSSIER4_Diagramme_Gantt.pdf'],
-    '📂Dossier 5: USE CASE': [],
+    '📂Dossier 5: USE CASE': ['DOSSIER5_Use_Case.pdf'],
     '📂Dossier 6: GESTION D\'UN PROJET SI': ['Dossier6 Cours Gestion de projets SI.pdf', 'Dossier6_SFG_TalentSeek.pdf'],
     '📂Certifications': ['Camilia_SABA_Certification_PIX.pdf', 'Sololearn Certification Introduction to Java.pdf', 'Sololearn Certification Introduction au C.pdf', 'Sololearn Certification Intermédiaire SQL.pdf'],
-    '📂Projet final': ['AURA.zip','AURA PROJET SI Document partagé.pdf', 'AURA SI Documentation technique.pdf', 'AURA Diagramme UML.png','AURA SI Base de données Schéma.png', 'Analyse_Test.pdf', 'SFG_SFD.pdf', 'Cahier_des_charges_AURA.pdf', 'Maquette AURA logo.jpg','Maquette Accueil.png', 'Maquette Connexion.png', 'Maquette Création compte.png', 'Maquette Contacts.png','Maquette Color palette.png'],
+    '📂Projet final': ['AURA.zip','AURA PROJET SI Document partagé.pdf', 'AURA SI Documentation technique.pdf', 'AURA Diagramme UML.png','AURA SI Base de données Schéma.png', 'Analyse_Test.pdf', 'SFG_SFD.pdf', 'Cahier_de_charge_AURA.pdf', 'Maquette AURA logo.jpg','Maquette Accueil.png', 'Maquette Connexion.png', 'Maquette Création compte.png', 'Maquette Contacts.png','Maquette Color palette.png'],
     '📂Soutenance (diaporama)': ['SI PROJET FINAL AURA DIAPORAMA.pdf'],
 };
 
