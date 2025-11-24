@@ -136,8 +136,9 @@ function showHomeView() {
                                  .replace(/_/g, ' ')
                                  .replace(/\b\w/g, l => l.toUpperCase());
             
+            const icon = getFileIcon(file);
             fileItem.innerHTML = `
-                <span class="file-icon">📜</span>
+                <span class="file-icon">${icon}</span>
                 <span class="file-name">${chapterNumber}.${index + 1} - ${displayName}</span>
             `;
             
@@ -211,6 +212,23 @@ function initApp() {
     document.getElementById('next-file').addEventListener('click', navigateToNextFile);
 }
 
+// Fonction utilitaire pour obtenir l'icône appropriée selon l'extension du fichier
+function getFileIcon(fileName) {
+    const extension = fileName.split('.').pop().toLowerCase();
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
+    const excelExtensions = ['xls', 'xlsx'];
+    
+    if (extension === 'pdf') return '📝';
+    if (imageExtensions.includes(extension)) return '🖼️';
+    if (excelExtensions.includes(extension)) return '📋';
+    if (extension === 'doc' || extension === 'docx') return '📄';
+    if (extension === 'ppt' || extension === 'pptx') return '📊';
+    if (extension === 'zip' || extension === 'rar' || extension === '7z') return '📦';
+    if (extension === 'txt') return '📄';
+    
+    return '📄'; // Icône par défaut
+}
+
 // Charger les fichiers d'un chapitre
 function loadChapter(chapterName) {
     currentChapter = chapterName;
@@ -223,7 +241,8 @@ function loadChapter(chapterName) {
         files.forEach((file, index) => {
             const fileElement = document.createElement('a');
             fileElement.href = '#';
-            fileElement.textContent = file;
+            const icon = getFileIcon(file);
+            fileElement.innerHTML = `<span class="file-icon" style="margin-right: 8px;">${icon}</span>${file}`;
             fileElement.addEventListener('click', (e) => {
                 e.preventDefault();
                 openFile(index);
